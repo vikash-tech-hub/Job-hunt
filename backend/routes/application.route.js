@@ -10,16 +10,18 @@ import {
 const router = express.Router();
 
 // Apply for a job
-router.route("/apply/:id").get(isAuthenticated, applyJob);
+// Apply for a job → should be POST
+router.route("/apply/:id").post(isAuthenticated, applyJob);
 
 // Get all jobs applied by the logged-in user
 router.route("/get").get(isAuthenticated, getAppliedJobs);
 
-// Get all applicants for a job (only recruiter should access)
+// Get all applicants for a job
 router.route("/:id/applicants").get(isAuthenticated, getApplicants);
 
 // Update status of application
-router.route("/status/:id/update").post(isAuthenticated, updateStatus);
+router.route("/status/:id/update").put(isAuthenticated, updateStatus);
+
 
 export default router;
 

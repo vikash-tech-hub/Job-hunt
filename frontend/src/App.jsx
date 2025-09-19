@@ -3,8 +3,6 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import Navbar from './components/shared/Navbar'
-import Login from './components/auth/Login.jsx'
-import Signup from './components/auth/Signup.jsx'
 import Home from './components/home.jsx'
 import Jobs from './components/Jobs.jsx'
 
@@ -18,7 +16,9 @@ import Companysetup from './components/admin/Companysetup'
 import Adminjobs from './components/admin/Adminjobs'
 import Postjob from './components/admin/PostJob'
 import Applicants from './components/admin/Applicants'
-import ProtectedRoute from './components/admin/Projectedroutes'
+import ProtectedRoute from './components/admin/ProtectedRoute'
+import Signup from './components/auth/signup'
+import Login from './components/auth/login'
 const approuter = createBrowserRouter([
   {
     path: "/",

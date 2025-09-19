@@ -8,13 +8,19 @@ import userRoutes from './routes/user.route.js';
 import companyRoutes from './routes/company.route.js';
 import jobRoutes from './routes/job.route.js';
 import applicationRoutes from './routes/application.route.js';
+import path from 'path';
+import bodyParser from 'body-parser';
 // Load .env variables BEFORE anything else uses them      1:26 tk ho gya h 
 dotenv.config();
-
+connectDB();
+const PORT = process.env.PORT || 3000;
 const app = express();
+const _dirname=path.resolve()
+
 
 // Middleware
 app.use(express.json());
+app.use(bodyParser.urlencoded({extended:true}))
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
  
@@ -24,13 +30,18 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 
-const PORT = process.env.PORT || 3000;
+
 app.use('/api/v1/user', userRoutes);
 app.use('/api/v1/company', companyRoutes);
 app.use('/api/v1/job', jobRoutes);
 app.use('/api/v1/application', applicationRoutes);
 
+app.use(express.static(path.join(_dirname,"/frontend/dist")))
+app.get('*',(_,res)=>{
+    res.sendFile(path.resolve(_dirname,"frontend","dist","index.html"))
+})
+
+
 app.listen(PORT, () => {
-    connectDB();
     console.log(`Server is running on port ${PORT}`);
 });

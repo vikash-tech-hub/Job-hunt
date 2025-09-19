@@ -11,7 +11,6 @@ import { profile } from "console";
 export const register = async (req, res) => {
   try {
     const { fullname, email, password, role, phoneNumber } = req.body;
-    console.log(fullname, email, password, role, phoneNumber);
 
     if (!fullname || !email || !password || !role || !phoneNumber) {
       return res.status(400).json({

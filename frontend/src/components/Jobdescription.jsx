@@ -31,7 +31,7 @@ const Jobdescription = () => {
       `${APPLICATION_API_END_POINT}/apply/${id}`, 
       { withCredentials: true }
     )
-    console.log(res.data)   // ab yaha JSON aayega
+      // ab yaha JSON aayega
     if (res.data.success) {
       setApplied(true)//updatee local state
       const updatesinglejob={...singlejob,applications:[...singlejob.applications,{applicant:user?._id}]}
